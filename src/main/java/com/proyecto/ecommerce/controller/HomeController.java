@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.slf4j.Logger;
@@ -171,5 +173,14 @@ public class HomeController {
 		orden=new Orden();
 		detalles.clear();
 		return "redirect:/";
+	}
+	
+	@PostMapping("/search")
+	public String seachProduct(@RequestParam String nombre,Model model) {
+		log.info("Nombre del producto: {}",nombre);
+		List<Producto> productos=productoService.findAll().stream().filter(p->p.getNombre().contains(nombre)).collect(Collectors.toList());
+		model.addAttribute("productos",productos);
+		
+		return "usuario/home";
 	}
 }
