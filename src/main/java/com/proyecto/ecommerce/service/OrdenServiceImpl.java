@@ -63,7 +63,6 @@ public class OrdenServiceImpl implements IOrdenService{
 
 	@Override
 	public Optional<Orden> findById(Integer id) {
-		
 		return ordenRepository.findById(id);
 	}
 	
