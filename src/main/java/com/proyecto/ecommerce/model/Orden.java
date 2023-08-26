@@ -31,6 +31,14 @@ public class Orden {
 	@OneToMany(mappedBy = "orden")
 	private List<DetalleOrden> detalle;
 	
+	public List<DetalleOrden> getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(List<DetalleOrden> detalle) {
+		this.detalle = detalle;
+	}
+
 	public Orden() {}
 
 	public Orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total) {
